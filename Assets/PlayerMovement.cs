@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         rb.velocity = velocity * speed;
+        transform.rotation = Quaternion.LookRotation(velocity);
     }
     void Shoot()
     {
