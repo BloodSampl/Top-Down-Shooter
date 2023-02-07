@@ -23,9 +23,12 @@ public class Bullet : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        velocity = new Vector2(bulletSpeed, rb.velocity.y);
-        rb.velocity = velocity;
-        
+    {      
+        if (rb != null)
+        {
+            var playerFacing = player.transform.up;
+            velocity = playerFacing;
+            rb.velocity = velocity;
+        }              
     }
 }
