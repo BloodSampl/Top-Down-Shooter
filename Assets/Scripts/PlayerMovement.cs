@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
     Rigidbody2D rb;
     [SerializeField] float speed;
+    [SerializeField] float bulletSpeed = 20;
     Vector2 velocity;
     private void Awake()
     {
@@ -36,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject PlayerBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            GameObject playerBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            playerBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;       
         }
     }    
 }

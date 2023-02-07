@@ -4,31 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed;
-    PlayerMovement player;
-    Rigidbody2D rb;
-    Vector2 velocity;
+    [SerializeField] float bulletLife = 3;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = FindObjectOfType<PlayerMovement>();
+        Destroy(gameObject, bulletLife);
     }
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {      
-        if (rb != null)
-        {
-            var playerFacing = player.transform.up;
-            velocity = playerFacing;
-            rb.velocity = velocity;
-        }              
+        Destroy(collision.gameObject);
+        Destroy(gameObject);
     }
 }
