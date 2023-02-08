@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Shoot()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             GameObject playerBullet = Instantiate(bullet, transform.position, Quaternion.identity);
             playerBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;       
