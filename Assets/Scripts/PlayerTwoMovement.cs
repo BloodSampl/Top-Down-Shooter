@@ -7,6 +7,7 @@ public class PlayerTwoMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float boost;
     Rigidbody2D rb2;
     Vector2 velocity;
 
@@ -33,6 +34,11 @@ public class PlayerTwoMovement : MonoBehaviour
         if(rb2.velocity != Vector2.zero)
         {
             transform.up = velocity;
+        }
+        if (Input.GetKey(KeyCode.V))
+        {
+
+            rb2.velocity += velocity * boost;
         }
     }
     void Shoot()
