@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1937650332928170345
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   bullet: {fileID: 768880013432879690, guid: 12cb1e9293ae3d040b6f35dd9d309a66, type: 3}
   speed: 10
   bulletSpeed: 20
+  boost: 20
 --- !u!1 &1937650334014038915
 GameObject:
   m_ObjectHideFlags: 0
