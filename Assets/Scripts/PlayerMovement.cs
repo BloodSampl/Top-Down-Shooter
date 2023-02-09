@@ -9,10 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float bulletSpeed = 20;
     [SerializeField] float boost;
+    [SerializeField] string vertical;
+    [SerializeField] string horizontal;
+    [SerializeField] KeyCode shootKey;
+    [SerializeField] AudioSource shootSound;
     Vector2 velocity;
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody2D>();
+        //shootSound = FindObjectOfType<AudioSource>();
     }
     void Start()
     {
@@ -27,24 +32,27 @@ public class PlayerMovement : MonoBehaviour
     }
     void Move()
     {
-        velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.velocity = velocity * speed;
-        if(rb.velocity != Vector2.zero)
-        {
-            transform.up = velocity;
-        }
         if (Input.GetKey(KeyCode.V))
         {
-
-            rb.velocity += velocity * boost;
+            rb.velocity = velocity * boost;
+        }
+        else
+        {
+            velocity = new Vector2(Input.GetAxisRaw(horizontal), Input.GetAxisRaw(vertical));
+            rb.velocity = velocity * speed;
+            if(rb.velocity != Vector2.zero)
+            {
+                transform.up = velocity;
+            }
         }
     }
     void Shoot()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(shootKey))
         {
             GameObject playerBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-            playerBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;       
+            playerBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
+            shootSound.Play();
         }
     }    
 }
