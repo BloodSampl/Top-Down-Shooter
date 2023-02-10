@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float boost;
     [SerializeField] string vertical;
     [SerializeField] string horizontal;
+    [SerializeField] TextMeshProUGUI winnerText;
     [SerializeField] KeyCode shootKey;
     [SerializeField] AudioSource shootSound;
     Vector2 velocity;
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         Shoot();
+        DisplayWinner();
     }
     void Move()
     {
@@ -54,5 +57,16 @@ public class PlayerMovement : MonoBehaviour
             playerBullet.GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed;
             shootSound.Play();
         }
-    }    
+    }
+    void DisplayWinner()
+    {
+        if(!GameObject.FindGameObjectWithTag("Player1"))
+        {
+            winnerText.text = "Player 2 Wins";
+        }
+        else
+        {
+            winnerText.text = "Player 1 wins";
+        }
+    }
 }
