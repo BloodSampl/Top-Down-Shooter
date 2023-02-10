@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponentInChildren<Rigidbody2D>();
-        //shootSound = FindObjectOfType<AudioSource>();
+        
     }
     void Start()
     {
